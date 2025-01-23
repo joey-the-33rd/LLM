@@ -480,7 +480,7 @@ def prompt(
         response.log_to_db(db)
 
 
-@cli.command()
+@cli.command(name="chat")
 @click.option("-s", "--system", help="System prompt to use")
 @click.option("model_id", "-m", "--model", help="Model to use")
 @click.option(
@@ -1318,7 +1318,7 @@ def templates_path():
     click.echo(template_dir())
 
 
-@cli.command()
+@cli.command(name="install")
 @click.argument("packages", nargs=-1, required=False)
 @click.option(
     "-U", "--upgrade", is_flag=True, help="Upgrade packages to latest version"
@@ -1354,7 +1354,7 @@ def install(packages, upgrade, editable, force_reinstall, no_cache_dir):
     run_module("pip", run_name="__main__")
 
 
-@cli.command()
+@cli.command(name="uninstall")
 @click.argument("packages", nargs=-1, required=True)
 @click.option("-y", "--yes", is_flag=True, help="Don't ask for confirmation")
 def uninstall(packages, yes):
@@ -1363,7 +1363,7 @@ def uninstall(packages, yes):
     run_module("pip", run_name="__main__")
 
 
-@cli.command()
+@cli.command(name="embed")
 @click.argument("collection", required=False)
 @click.argument("id", required=False)
 @click.option(
@@ -1478,7 +1478,7 @@ def embed(
             click.echo(encode(embedding).hex())
 
 
-@cli.command()
+@cli.command(name="embed-multi")
 @click.argument("collection")
 @click.argument(
     "input_path",
@@ -1668,7 +1668,7 @@ def embed_multi(
         collection_obj.embed_multi(tuples(), **embed_kwargs)
 
 
-@cli.command()
+@cli.command(name="similar")
 @click.argument("collection")
 @click.argument("id", required=False)
 @click.option(
